@@ -61,7 +61,7 @@ ctrl.options = {
 }
 ````
 
-####options.data
+#### options.data
 Type: `array`  
 Default: `[]`
 
