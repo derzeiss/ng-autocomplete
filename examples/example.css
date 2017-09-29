@@ -1,0 +1,45 @@
+html {
+    font: 300 18px/1.5em 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+h1 {
+    margin: 0 0 1.5rem;
+    font-weight: 300;
+    font-size: 2.6rem;
+    line-height: 1em;
+}
+
+h2 {
+    position: relative;
+    top: .9rem;
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1em;
+}
+
+code {
+    padding: .2rem .3rem;
+    font-size: .9em;
+    font-family: monospace;
+    border-radius: 2px;
+    color: rgba(0,0,0,0.7);
+    background: #e1e2d4;
+}
+
+p {
+    font-weight: 400;
+    margin: 0 0 2rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    margin: 4rem auto;
+}
+
+autocomplete {
+    width: 100%;
+    max-width: 400px;
+}

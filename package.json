@@ -1,0 +1,35 @@
+{
+  "name": "angular-autocomplete",
+  "version": "1.0.0",
+  "description": "AngularJS 1.5+ autocomplete component.",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derzeiss/angular-autocomplete.git"
+  },
+  "author": "derzeiss",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/derzeiss/angular-autocomplete/issues"
+  },
+  "homepage": "https://github.com/derzeiss/angular-autocomplete#readme",
+  "dependencies": {
+    "angular": "^1"
+  },
+  "devDependencies": {
+    "babel-core": "latest",
+    "babel-preset-env": "latest",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0"
+  }
+}

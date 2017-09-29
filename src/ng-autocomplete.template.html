@@ -1,0 +1,21 @@
+<input class="autocomplete__input"
+       type="text"
+       id="{{$ctrl.options.input.id}}"
+       placeholder="{{$ctrl.options.input.placeholder}}"
+       ng-class="$ctrl.options.input.class"
+       ng-model="$ctrl.model"
+       ng-focus="$ctrl.focus()"
+       ng-change="$ctrl.type()"
+       ng-blur="$ctrl.blur()">
+
+<div class="autocomplete__list"
+     ng-class="{autocomplete__list_visible: $ctrl.isCompleting}">
+
+    <div class="autocomplete__item"
+         ng-repeat="item in $ctrl.items = ($ctrl.data | searchFilter : $ctrl.searchFilter : $ctrl.maxItems) track by $index"
+         ng-bind-html="item.label | highlight: $ctrl.searchFilter : $ctrl.classHighlight"
+         ng-class="[$ctrl.options.item.class, {'{{$ctrl.classActive}}': $ctrl.selectedIndex === $index}, {'autocomplete__item_empty-state': item.isEmptyState}]"
+         ng-click="$ctrl.select(item)"
+         ng-mouseenter="$ctrl.selectedIndex = $index">
+    </div>
+</div>

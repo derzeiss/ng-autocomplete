@@ -1,0 +1,31 @@
+.custom_autocomplete {
+    font-family: monospace;
+    max-width: 430px;
+}
+
+.input {
+    border: none;
+    color: #fff;
+    background: #000;
+}
+
+.list {
+    border: none;
+    background: #000;
+}
+
+.visibleList {
+    display: block;
+}
+
+.item {
+    color: #fff;
+}
+
+.activeItem {
+    background: #555;
+}
+
+.highlightedItem {
+    color: #0f0;
+}
