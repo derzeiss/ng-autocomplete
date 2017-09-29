@@ -60,6 +60,7 @@
 
             // set default options
             ctrl.data = ctrl.options.data || ctrl.data || [];
+			ctrl.data = angular.copy(ctrl.data);
             ctrl.model = ctrl.options.input.value || '';
             ctrl.searchFilter = ctrl.model;
 
