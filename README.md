@@ -13,7 +13,7 @@ If you want the default styling also include one of the stylesheets found in `di
 <autocomplete data="data"></autocomplete>
 ```
 If you just want the thing to work you don't need to pass anything than the data array.
-See [`options.data`](#options.data) for more information on how to format your data.
+See [`options.data`](#optionsdata) for more information on how to format your data.
 
 ### Advanced usage
 ```html
@@ -61,7 +61,7 @@ ctrl.options = {
 }
 ````
 
-#### options.data
+####options.data
 Type: `array`  
 Default: `[]`
 
@@ -208,10 +208,10 @@ Here's a reduced overview over the used HTML:
 
 **Conditional classes:**  
 - `autocomplete__list`
-  - `autocomplete__list_visible` - [options.list.classVisible](#options.list.classVisible)
+  - `autocomplete__list_visible` - [options.list.classVisible](#optionslistclassvisible)
 - `autocomplete__item`
-  - `autocomplete__item_active` - [options.item.classActive](#options.item.classActive)
-  - `autocomplete__item_highlight` - [options.item.classHighlight](#options.item.classHighlight)
+  - `autocomplete__item_active` - [options.item.classActive](#optionsitemclassactive)
+  - `autocomplete__item_highlight` - [options.item.classHighlight](#optionsitemclasshighlight)
 
 ## Contributing
 If you'd like to contribute, please fork the repository and make changes as
