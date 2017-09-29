@@ -19,11 +19,15 @@
             input: {
                 placeholder: 'search the 250 best rated ImdB movies...',
             },
-            onFocus: (val) => console.log('onFocus', val),
-            onBlur: (val) => console.log('onBlur', val),
-            onType: (val) => console.log('onType', val),
-            onSelect: (item) => console.log('onSelect', item),
+            onFocus: log.bind('onFocus'),
+            onBlur: log.bind('onBlur'),
+            onType: log.bind('onType'),
+            onSelect: log.bind('onSelect'),
         };
+
+        function log(ctrl, item) {
+            console.log(this, ctrl, item)
+        }
     }
 
 

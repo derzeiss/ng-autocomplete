@@ -31,11 +31,15 @@
                 classActive: 'activeItem',
                 classHighlight: 'highlightedItem'
             },
-            onFocus: (self) => console.log('onFocus', self),
-            onBlur: (self) => console.log('onBlur', self),
-            onType: (self) => console.log('onType', self),
-            onSelect: (self, item) => console.log('onSelect', self, item),
+            onFocus: log.bind('onFocus'),
+            onBlur: log.bind('onBlur'),
+            onType: log.bind('onType'),
+            onSelect: log.bind('onSelect'),
         };
+
+        function log(ctrl, item) {
+            console.log(this, ctrl, item)
+        }
     }
 
 
