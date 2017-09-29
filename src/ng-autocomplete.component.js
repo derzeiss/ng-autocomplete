@@ -60,7 +60,7 @@
 
             // set default options
             ctrl.data = ctrl.options.data || ctrl.data || [];
-			ctrl.data = angular.copy(ctrl.data);
+            ctrl.data = angular.copy(ctrl.data);
             ctrl.model = ctrl.options.input.value || '';
             ctrl.searchFilter = ctrl.model;
 
@@ -145,7 +145,6 @@
             ctrl.selectedIndex = --ctrl.selectedIndex < 0 ? ctrl.items.length - 1 : ctrl.selectedIndex;
             if (ctrl.selectedIndex >= ctrl.items.length) ctrl.selectedIndex = ctrl.items.length - 1;
             updateView();
-
         }
 
         /**
@@ -157,7 +156,6 @@
             ctrl.selectedIndex = (ctrl.selectedIndex + 1) % ctrl.items.length;
             updateView();
         }
-
 
         // ---------- public callback wrappers ----------
 
@@ -183,7 +181,6 @@
                 $timeout(() => ctrl.isCompleting = false, 100);
                 ctrl.onBlur(ctrl);
             }
-
         }
 
         /**

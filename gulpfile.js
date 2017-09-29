@@ -25,9 +25,9 @@ gulp.task('js', () => {
         path.src + 'searchFilter.filter.js'
     ])
         .pipe(concat('ng-autocomplete.js'))
+        .pipe(babel({presets: ['env']}))
         .pipe(gulp.dest(path.dist))
         .pipe(rename('ng-autocomplete.min.js'))
-        .pipe(babel({presets: ['env']}))
         .pipe(uglify())
         .pipe(gulp.dest(path.dist));
 });

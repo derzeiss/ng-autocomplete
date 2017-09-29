@@ -1,46 +1,23 @@
 'use strict';
+
 (function () {
-    angular
-        .module('ngAutocomplete', [])
-        .component('autocomplete', {
-            template: `
-                <input class="autocomplete__input"
-                       type="text"
-                       id="{{$ctrl.options.input.id}}"
-                       placeholder="{{$ctrl.options.input.placeholder}}"
-                       ng-class="$ctrl.options.input.class"
-                       ng-model="$ctrl.model"
-                       ng-focus="$ctrl.focus()"
-                       ng-change="$ctrl.type()"
-                       ng-blur="$ctrl.blur()">
-                
-                <div class="autocomplete__list"
-                     id="{{$ctrl.options.list.id}}"
-                     ng-class="[$ctrl.options.list.class, {'{{$ctrl.options.list.classVisible}}': $ctrl.isCompleting}]">
-                
-                    <div class="autocomplete__item"
-                         ng-repeat="item in $ctrl.items = ($ctrl.data | searchFilter : $ctrl.searchFilter : $ctrl.options.maxItems) track by $index"
-                         ng-bind-html="item.label | highlight: $ctrl.searchFilter : $ctrl.options.item.classHighlight"
-                         ng-class="[$ctrl.options.item.class, {'{{$ctrl.options.item.classActive}}': $ctrl.selectedIndex === $index}, {'autocomplete__item_empty-state': item.isEmptyState}]"
-                         ng-click="$ctrl.select(item)"
-                         ng-mouseenter="$ctrl.selectedIndex = $index">
-                    </div>
-                </div>`,
-            controller: autocompleteController,
-            bindings: {
-                data: '<',
-                options: '<',
-                onFocus: '&',
-                onBlur: '&',
-                onType: '&',
-                onSelect: '&'
-            }
-        });
+    angular.module('ngAutocomplete', []).component('autocomplete', {
+        template: '\n                <input class="autocomplete__input"\n                       type="text"\n                       id="{{$ctrl.options.input.id}}"\n                       placeholder="{{$ctrl.options.input.placeholder}}"\n                       ng-class="$ctrl.options.input.class"\n                       ng-model="$ctrl.model"\n                       ng-focus="$ctrl.focus()"\n                       ng-change="$ctrl.type()"\n                       ng-blur="$ctrl.blur()">\n                \n                <div class="autocomplete__list"\n                     id="{{$ctrl.options.list.id}}"\n                     ng-class="[$ctrl.options.list.class, {\'{{$ctrl.options.list.classVisible}}\': $ctrl.isCompleting}]">\n                \n                    <div class="autocomplete__item"\n                         ng-repeat="item in $ctrl.items = ($ctrl.data | searchFilter : $ctrl.searchFilter : $ctrl.options.maxItems) track by $index"\n                         ng-bind-html="item.label | highlight: $ctrl.searchFilter : $ctrl.options.item.classHighlight"\n                         ng-class="[$ctrl.options.item.class, {\'{{$ctrl.options.item.classActive}}\': $ctrl.selectedIndex === $index}, {\'autocomplete__item_empty-state\': item.isEmptyState}]"\n                         ng-click="$ctrl.select(item)"\n                         ng-mouseenter="$ctrl.selectedIndex = $index">\n                    </div>\n                </div>',
+        controller: autocompleteController,
+        bindings: {
+            data: '<',
+            options: '<',
+            onFocus: '&',
+            onBlur: '&',
+            onType: '&',
+            onSelect: '&'
+        }
+    });
 
     autocompleteController.$inject = ['$element', '$scope', '$timeout'];
 
     function autocompleteController($element, $scope, $timeout) {
-        const ctrl = this;
+        var ctrl = this;
 
         ctrl.isCompleting = false;
         ctrl.selectedIndex = -1;
@@ -52,7 +29,7 @@
         ctrl.type = type;
         ctrl.select = select;
 
-        ctrl.$onInit = () => {
+        ctrl.$onInit = function () {
             // set defaults to prevent errors
             if (!ctrl.options) ctrl.options = {};
             if (!ctrl.options.list) ctrl.options.list = {};
@@ -60,7 +37,7 @@
 
             // set default options
             ctrl.data = ctrl.options.data || ctrl.data || [];
-			ctrl.data = angular.copy(ctrl.data);
+            ctrl.data = angular.copy(ctrl.data);
             ctrl.model = ctrl.options.input.value || '';
             ctrl.searchFilter = ctrl.model;
 
@@ -78,22 +55,18 @@
             ctrl.onSelect = ctrl.options.onSelect || ctrl.onSelect || pass;
 
             // insert empty state into data
-            if (ctrl.options.emptyState) ctrl.data.splice(0, 0, {isEmptyState: true, label: ctrl.options.emptyState})
+            if (ctrl.options.emptyState) ctrl.data.splice(0, 0, { isEmptyState: true, label: ctrl.options.emptyState });
         };
 
         //////////////////////////////
 
         // ---------- keyboard controls ----------
 
-        ctrl.$postLink = () => {
+        ctrl.$postLink = function () {
             // setup event listener callbacks for keys
-            $element[0].addEventListener('keydown', (ev) => {
-                let keycode = ev.keyCode;
-                if (keycode === 9) onKeyTab(ev);
-                else if (keycode === 13) onKeyEnter();
-                else if (keycode === 27) onKeyEsc();
-                else if (keycode === 38) onKeyUp();
-                else if (keycode === 40) onKeyDown();
+            $element[0].addEventListener('keydown', function (ev) {
+                var keycode = ev.keyCode;
+                if (keycode === 9) onKeyTab(ev);else if (keycode === 13) onKeyEnter();else if (keycode === 27) onKeyEsc();else if (keycode === 38) onKeyUp();else if (keycode === 40) onKeyDown();
             });
         };
 
@@ -107,7 +80,7 @@
         function onKeyTab(ev) {
             ev.preventDefault();
             if (ctrl.selectedIndex > -1) {
-                let item = ctrl.items[ctrl.selectedIndex];
+                var item = ctrl.items[ctrl.selectedIndex];
                 if (item.isEmptyState) return;
                 ctrl.model = ctrl.searchFilter = item.label;
                 ctrl.selectedIndex = 0;
@@ -145,7 +118,6 @@
             ctrl.selectedIndex = --ctrl.selectedIndex < 0 ? ctrl.items.length - 1 : ctrl.selectedIndex;
             if (ctrl.selectedIndex >= ctrl.items.length) ctrl.selectedIndex = ctrl.items.length - 1;
             updateView();
-
         }
 
         /**
@@ -157,7 +129,6 @@
             ctrl.selectedIndex = (ctrl.selectedIndex + 1) % ctrl.items.length;
             updateView();
         }
-
 
         // ---------- public callback wrappers ----------
 
@@ -180,10 +151,11 @@
                 ctrl.isCompleting = false;
             } else {
                 // set timeout before closing so the ngClick (select) can fire
-                $timeout(() => ctrl.isCompleting = false, 100);
+                $timeout(function () {
+                    return ctrl.isCompleting = false;
+                }, 100);
                 ctrl.onBlur(ctrl);
             }
-
         }
 
         /**
@@ -191,8 +163,7 @@
          * Updates the search filter if input has at least options.minLength.
          */
         function type() {
-            if (ctrl.model.length < ctrl.options.minLength) ctrl.isCompleting = false;
-            else {
+            if (ctrl.model.length < ctrl.options.minLength) ctrl.isCompleting = false;else {
                 ctrl.isCompleting = true;
                 ctrl.searchFilter = ctrl.model;
 
@@ -217,23 +188,22 @@
         // used for empty callbacks
         function pass() {}
         // update view if no digest cycle in progress
-        function updateView() { if(!$scope.$$phase) $scope.$apply(); }
+        function updateView() {
+            if (!$scope.$$phase) $scope.$apply();
+        }
         // @formatter:on
-
     }
 })();
 'use strict';
 (function () {
-    angular
-        .module('ngAutocomplete')
-        .filter('highlight', highlightFilter);
+    angular.module('ngAutocomplete').filter('highlight', highlightFilter);
 
     highlightFilter.$inject = ['$sce'];
 
     function highlightFilter($sce) {
         return function (input, query, highlightClass) {
-            let exp = new RegExp(query, 'gi'),
-                highlighted = input.replace(exp, `<span class="${highlightClass}">$&</span>`);
+            var exp = new RegExp(query, 'gi'),
+                highlighted = input.replace(exp, '<span class="' + highlightClass + '">$&</span>');
 
             return $sce.trustAsHtml(highlighted);
         };
@@ -241,25 +211,22 @@
 })();
 'use strict';
 (function () {
-    angular
-        .module('ngAutocomplete')
-        .filter('searchFilter', searchFilterFilter);
+    angular.module('ngAutocomplete').filter('searchFilter', searchFilterFilter);
 
     searchFilterFilter.$inject = [];
 
     function searchFilterFilter() {
         return function (array, query, maxItems) {
-            let exp = new RegExp(query, 'i');
-            let counter = maxItems;
+            var exp = new RegExp(query, 'i');
+            var counter = maxItems;
 
-            let filtered = array.filter((item) => {
+            var filtered = array.filter(function (item) {
                 if (counter <= 0) return;
                 if (!item.isEmptyState && exp.test(item.label)) {
                     counter--;
                     return true;
                 }
                 return false;
-
             });
             if (!filtered.length && array.length) filtered[0] = array[0];
             return filtered;
