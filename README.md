@@ -1,4 +1,4 @@
-#angular-autocomplete
+# angular-autocomplete
 AngularJS 1.5+ autocomplete component.
 
 ## Getting started
