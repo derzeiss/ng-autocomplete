@@ -8,12 +8,15 @@ If you want the default styling also include one of the stylesheets found in `di
 2. Add the `ngAutocomplete` dependency to your angular module dependencies.
 3. Voilá; you can now use the `<autocomplete>` tag in your app.
 
+You may also check out the [working examples][example-index]
+
 ### Basic usage
 ```html
 <autocomplete data="data"></autocomplete>
 ```
 If you just want the thing to work you don't need to pass anything than the data array.
-See [`options.data`](#optionsdata) for more information on how to format your data.
+See [`options.data`](#optionsdata) for more information on how to format your data.  
+There's a [working example][example-basic] for basic usage.
 
 ### Advanced usage
 ```html
@@ -21,6 +24,7 @@ See [`options.data`](#optionsdata) for more information on how to format your da
 ```
 Usually you also want to pass some options to the autocomplete. 
 You can do that with the options attribute. You can even pass the data inside the options object.
+There's a [working example][example-advanced] for advanced usage.
 
 ## Features
 - easy to use / state-of-the-art angular autocomplete
@@ -223,5 +227,8 @@ The code in this project is licensed under MIT license.
 See the [LICENSE](LICENSE) for more info.
 
 
+[example-index]:https://derzeiss.github.io/ng-autocomplete/
+[example-basic]:https://derzeiss.github.io/ng-autocomplete/basic/
+[example-advanced]:https://derzeiss.github.io/ng-autocomplete/advanced/
 [bem]:https://en.bem.info/methodology/
 [issues]:https://github.com/derzeiss/ng-autocomplete/issues/new
