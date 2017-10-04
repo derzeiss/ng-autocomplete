@@ -18,7 +18,6 @@
                     return true;
                 }
                 return false;
-
             });
             if (!filtered.length && array.length) filtered[0] = array[0];
             return filtered;
